@@ -24,5 +24,3 @@ $(document).ready(function() {
         } else {
             alert('Please enter some data.');
         }
-    });
-});
