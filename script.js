@@ -1,9 +1,18 @@
-document.getElementById('qrForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const data = document.getElementById('qrData').value;
-    if (data) {
-        QRCode.toCanvas(document.getElementById('qrCode'), data, function (error) {
-            if (error) console.error(error);
-        });
-    }
+$(document).ready(function() {
+    $('#qrForm').on('submit', function(event) {
+        event.preventDefault();
+        const data = $('#qrData').val();
+        if (data) {
+            $('#spinner').show();
+            QRCode.toCanvas(document.getElementById('qrCode'), data, function (error) {
+                $('#spinner').hide();
+                if (error) {
+                    console.error(error);
+                    alert('An error occurred while generating the QR code.');
+                }
+            });
+        } else {
+            alert('Please enter some data.');
+        }
+    });
 });
